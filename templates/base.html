@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Dulce Cereza{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+  <header class="nav">
+    <div class="contenedor nav-interior">
+      <a class="logo" href="{% url 'inicio' %}">🍒 Dulce <em>Cereza</em></a>
+      <nav class="nav-links" aria-label="Navegación principal">
+  <a
+    href="{% url 'inicio' %}"
+    class="{% if request.resolver_match.url_name == 'inicio' %}activo{% endif %}"
+  >
+    Inicio
+  </a>
+
+  <a
+    href="{% url 'historia' %}"
+    class="{% if request.resolver_match.url_name == 'historia' %}activo{% endif %}"
+  >
+    Historia
+  </a>
+
+  <a
+    href="{% url 'catalogo' %}"
+    class="{% if request.resolver_match.url_name == 'catalogo' %}activo{% endif %}"
+  >
+    Catálogo
+  </a>
+
+  <a
+    href="{% url 'personalizadas' %}"
+    class="{% if request.resolver_match.url_name == 'personalizadas' %}activo{% endif %}"
+  >
+    Personalizadas
+  </a>
+
+  <a
+    href="{% url 'contacto' %}"
+    class="{% if request.resolver_match.url_name == 'contacto' %}activo{% endif %}"
+  >
+    Contacto
+  </a>
+
+  <a href="{% url 'pedidos' %}" class="btn-pedidos">
+    Pedidos
+  </a>
+</nav>
+    </div>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer class="footer">
+    <div class="contenedor">
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="{% url 'inicio' %}">🍒 Dulce <em>Cereza</em></a>
+          <div class="redes">
+            <a href="#">IG</a><a href="#">FB</a><a href="#">TT</a>
+          </div>
+        </div>
+        <div>
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="{% url 'inicio' %}">Inicio</a></li>
+           <li><a href="{% url 'historia' %}">Historia</a></li>
+            <li><a href="{% url 'catalogo' %}#catalogo">Catálogo</a></li>
+            <li><a href="{% url 'personalizadas' %}">Personalizadas</a></li>
+         <li><a href="{% url 'contacto' %}">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Productos</h4>
+          <ul>
+            <li><a href="#">Tortas</a></li>
+            <li><a href="#">Postres</a></li>
+            <li><a href="{% url 'personalizadas' %}">Personalizadas</a></li>
+            <li><a href="#">Ediciones especiales</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Ayuda</h4>
+          <ul>
+            <li><a href="#">Pedidos por WhatsApp</a></li>
+            <li><a href="#">Envíos y cobertura</a></li>
+            <li><a href="#">Preguntas frecuentes</a></li>
+            <li><a href="#">Términos y condiciones</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contáctanos</h4>
+          <ul>
+            <li>📞 +51 900 000 000</li>
+            <li>✉️ hola@dulcecereza.pe</li>
+            <li>📷 @dulcecereza</li>
+            <li>📍 Arequipa, Perú</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-base">© 2026 Dulce Cereza · Las mejores tortas de Arequipa</div>
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

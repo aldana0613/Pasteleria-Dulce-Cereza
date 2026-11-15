@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Catálogo · Dulce Cereza{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="contenedor">
+    <span class="etiqueta">COLECCIÓN 2026</span>
+    <h1>Hechas con amor,<br><em>para tus momentos dulces.</em></h1>
+    <p>Aquí encuentras todo lo que Dulce Cereza crea para ti con ingredientes naturales seleccionados.</p>
+    <div class="buscador">
+      🔍 <input type="text" id="buscador" placeholder="Busca tu torta o postre favorito...">
+    </div>
+  </div>
+</section>
+
+<div class="chips-barra">
+  <div class="contenedor chips">
+    {% for c in categorias %}
+    <button class="chip {% if forloop.first %}activo{% endif %}" data-categoria="{{ c }}">{{ c }}</button>
+    {% endfor %}
+  </div>
+</div>
+
+<section class="catalogo" id="catalogo">
+  <div class="contenedor">
+    <div class="encabezado">
+      <small>COLECCIÓN 2026</small>
+      <h2>Nuestras Creaciones</h2>
+    </div>
+
+    <div class="grid">
+      {% for t in tortas %}
+      <article class="tarjeta" data-categoria="{{ t.categoria }}" data-nombre="{{ t.nombre|lower }}">
+        <div class="foto">
+          <span class="insignia">{{ t.etiqueta }}</span>
+          {{ t.emoji }}
+        </div>
+        <div class="cuerpo">
+          <h3>{{ t.nombre }}</h3>
+          <p class="desc">{{ t.desc }}</p>
+          <div class="precios">
+            <small>PRECIOS 2026</small>
+            {% for tamano, porciones, precio in t.precios %}
+            <div class="fila">
+              <span>{{ tamano }} · <small>{{ porciones }}</small></span>
+              <b>S/ {{ precio|floatformat:2 }}</b>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="campo" style="margin-top: 18px; margin-bottom: 0;">
+  <label for="tamano-{{ forloop.counter }}">
+    Elige una presentación
+  </label>
+
+  <select
+    id="tamano-{{ forloop.counter }}"
+    class="presentacion-producto"
+  >
+    {% for tamano, porciones, precio in t.precios %}
+      <option
+        value="{{ tamano }}"
+        data-porciones="{{ porciones }}"
+        data-precio="{{ precio|stringformat:'.2f' }}"
+      >
+        {{ tamano }} · {{ porciones }} · S/ {{ precio|floatformat:2 }}
+      </option>
+    {% endfor %}
+  </select>
+</div>
+
+<button
+  type="button"
+  class="btn-agregar agregar-producto"
+  data-nombre="{{ t.nombre }}"
+  data-emoji="{{ t.emoji }}"
+>
+  Agregar al pedido
+</button>
+
+<p
+  class="aviso-producto"
+  role="status"
+  aria-live="polite"
+></p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <p class="vacio" id="vacio">No encontramos tortas con ese nombre 🍰</p>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/catalogo.js' %}?v=2"></script>
+{% endblock %}

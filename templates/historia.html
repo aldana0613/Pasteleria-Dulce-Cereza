@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Historia · Dulce Cereza{% endblock %}
+
+{% block content %}
+<section class="hero-pagina">
+  <div class="contenedor">
+    <span class="etiqueta">NUESTRA TRAYECTORIA</span>
+    <h1>El arte de endulzar<br><em>momentos especiales.</em></h1>
+    <p>Una historia de dedicación, buenos ingredientes y cariño por la repostería artesanal.</p>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor">
+    <div class="timeline">
+      {% for etapa in etapas %}
+      <div class="tl-item {% if not forloop.counter0|divisibleby:2 %}invertido{% endif %}">
+        <div class="tl-card">
+          <div class="num">{{ etapa.numero }}. {{ etapa.titulo }}</div>
+          <h3>{{ etapa.subtitulo }}</h3>
+          {% for parrafo in etapa.parrafos %}
+          <p>{{ parrafo }}</p>
+          {% endfor %}
+        </div>
+        <div class="tl-punto"></div>
+        <div class="tl-foto">{{ etapa.emoji }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include 'componentes/cita.html' with texto="Hacemos tortas, pero lo que de verdad entregamos son recuerdos." %}
+{% endblock %}

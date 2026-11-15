@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Personalizadas · Dulce Cereza{% endblock %}
+
+{% block content %}
+<section class="hero-pagina">
+  <div class="contenedor">
+    <span class="etiqueta">TORTAS PERSONALIZADAS</span>
+    <h1>Tu idea,<br><em>hecha torta.</em></h1>
+    <p>Cuéntanos qué quieres celebrar y la diseñamos solo para ti: sabor, tamaño, decoración y mensaje.</p>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor">
+    <div class="encabezado">
+      <small>CÓMO FUNCIONA</small>
+      <h2>Tres pasos sencillos</h2>
+    </div>
+    <div class="pasos">
+      <div class="paso">
+        <div class="numero">01</div>
+        <h3>Cuéntanos tu idea</h3>
+        <p>Completa el formulario con la ocasión, el sabor y cómo imaginas tu torta. Puedes adjuntar una foto de referencia.</p>
+      </div>
+      <div class="paso">
+        <div class="numero">02</div>
+        <h3>Te cotizamos</h3>
+        <p>Revisamos tu pedido y te escribimos con el diseño propuesto, el precio y la fecha de entrega.</p>
+      </div>
+      <div class="paso">
+        <div class="numero">03</div>
+        <h3>La creamos para ti</h3>
+        <p>La preparamos con ingredientes frescos y te la entregamos lista para celebrar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor">
+    <div class="encabezado">
+      <small>PEDIDO ESPECIAL</small>
+      <h2>Diseñemos tu torta</h2>
+    </div>
+
+    <form class="formulario" id="form-personalizada" method="post">
+      {% csrf_token %}
+      <div class="dos">
+        <div class="campo">
+          <label for="nombre">Tu nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej: María Quispe" required>
+        </div>
+        <div class="campo">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="Ej: 999 999 999" required>
+        </div>
+      </div>
+
+      <div class="dos">
+        <div class="campo">
+          <label for="ocasion">Ocasión</label>
+          <select id="ocasion" name="ocasion" required>
+            <option value="">Selecciona...</option>
+            <option>Cumpleaños</option>
+            <option>Aniversario</option>
+            <option>Baby shower</option>
+            <option>Boda</option>
+            <option>Día de la Madre</option>
+            <option>Otra</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="fecha">Fecha del evento</label>
+          <input type="date" id="fecha" name="fecha" required>
+        </div>
+      </div>
+
+      <div class="dos">
+        <div class="campo">
+          <label for="tamano">Tamaño</label>
+          <select id="tamano" name="tamano" required>
+            <option value="">Selecciona...</option>
+            <option>Personal (1 porción)</option>
+            <option>20 cm · 12-15 porciones</option>
+            <option>24 cm · 20-22 porciones</option>
+            <option>26 cm · 22-26 porciones</option>
+            <option>Más grande (consultar)</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="sabor">Sabor</label>
+          <select id="sabor" name="sabor" required>
+            <option value="">Selecciona...</option>
+            <option>Chocolate</option>
+            <option>Vainilla</option>
+            <option>Red Velvet</option>
+            <option>Tres Leches</option>
+            <option>Zanahoria</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="mensaje">Mensaje sobre la torta (opcional)</label>
+        <input type="text" id="mensaje" name="mensaje" placeholder="Ej: Feliz cumpleaños, mamá">
+      </div>
+
+      <div class="campo">
+        <label for="descripcion">Describe tu idea</label>
+        <textarea id="descripcion" name="descripcion" placeholder="Colores, temática, decoración, alergias..." required></textarea>
+      </div>
+
+      <div class="campo">
+        <label for="foto">Foto de referencia (opcional)</label>
+        <input type="file" id="foto" name="foto" accept="image/*">
+      </div>
+
+      <button type="submit" class="btn-enviar">Enviar mi pedido</button>
+      <div class="mensaje-ok" id="mensaje-ok">🎉 ¡Gracias! Recibimos tu idea y te contactaremos pronto.</div>
+    </form>
+  </div>
+</section>
+
+{% include 'componentes/cita.html' with texto="Cada torta lleva un pedacito de quien la regala." %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/personalizadas.js' %}"></script>
+{% endblock %}

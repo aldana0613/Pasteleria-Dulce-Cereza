@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contacto · Dulce Cereza{% endblock %}
+
+{% block content %}
+<section class="hero-pagina">
+  <div class="contenedor">
+    <span class="etiqueta">CONTACTO</span>
+    <h1>Hablemos de tu<br><em>próxima celebración.</em></h1>
+    <p>Escríbenos para pedidos, consultas o ideas. Te respondemos lo antes posible.</p>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor contacto-layout">
+    <div>
+      <div class="info-lista">
+        <div class="info-card">
+          <div class="icono">📞</div>
+          <div><small>Teléfono / WhatsApp</small><b>+51 900 000 000</b></div>
+        </div>
+        <div class="info-card">
+          <div class="icono">✉️</div>
+          <div><small>Correo</small><b>hola@dulcecereza.pe</b></div>
+        </div>
+        <div class="info-card">
+          <div class="icono">📷</div>
+          <div><small>Instagram</small><b>@dulcecereza</b></div>
+        </div>
+        <div class="info-card">
+          <div class="icono">📍</div>
+          <div><small>Ubicación</small><b>Arequipa, Perú</b></div>
+        </div>
+        <div class="info-card">
+          <div class="icono">🕒</div>
+          <div><small>Horario</small><b>Lun a Sáb · 9:00 a 20:00</b></div>
+        </div>
+      </div>
+      <div class="mapa">
+        <span>📍</span>
+        <p>Muy<br>pronto</p>
+      </div>
+    </div>
+
+    <form class="formulario" id="form-contacto" method="post">
+      {% csrf_token %}
+      <div class="campo">
+        <label for="nombre">Tu nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej: María Quispe" required>
+      </div>
+      <div class="campo">
+        <label for="correo">Correo</label>
+        <input type="email" id="correo" name="correo" placeholder="tucorreo@gmail.com" required>
+      </div>
+      <div class="campo">
+        <label for="asunto">Asunto</label>
+        <select id="asunto" name="asunto" required>
+          <option value="">Selecciona...</option>
+          <option>Consulta general</option>
+          <option>Quiero hacer un pedido</option>
+          <option>Torta personalizada</option>
+          <option>Reclamo o sugerencia</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
+      </div>
+      <button type="submit" class="btn-enviar">Enviar mensaje</button>
+      <div
+  class="mensaje-ok"
+  id="mensaje-ok"
+  role="status"
+  aria-live="polite"
+  style="display: none;"
+>
+  mensaje enviado correctamente.
+  
+</div>
+    </form>
+  </div>
+</section>
+
+{% include 'componentes/cita.html' with texto="Nos encanta ser parte de tus celebraciones." %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/contacto.js' %}"></script>
+{% endblock %}

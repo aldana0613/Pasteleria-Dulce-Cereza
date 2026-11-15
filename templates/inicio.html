@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio · Dulce Cereza{% endblock %}
+
+{% block content %}
+<main class="inicio-pagina">
+
+  <!-- Bienvenida -->
+  <section class="hero" aria-labelledby="titulo-bienvenida">
+    <div class="contenedor">
+      <span class="etiqueta">BIENVENIDOS A DULCE CEREZA</span>
+
+      <h1 id="titulo-bienvenida">
+        Un dulce momento,<br>
+        <em>una hermosa celebración.</em>
+      </h1>
+
+      <p>
+        Nos alegra tenerte aquí. Descubre nuestras tortas y postres,
+        conoce nuestra historia y encuentra una forma especial
+        de acompañar tus celebraciones.
+      </p>
+
+      <div class="inicio-acciones">
+        <a href="{% url 'catalogo' %}" class="btn-agregar">
+          Explorar catálogo
+        </a>
+
+  
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros -->
+  <section
+    class="seccion"
+    id="nosotros"
+    aria-labelledby="titulo-nosotros"
+  >
+    <div class="contenedor">
+      <div class="encabezado">
+        <small>EL CORAZÓN DE DULCE CEREZA</small>
+        <h2 id="titulo-nosotros">Nosotros</h2>
+      </div>
+
+      <div class="inicio-nosotros">
+        <article class="tl-card">
+          <div class="num">Hecho con cariño</div>
+
+          <h3>Queremos ser parte de tus mejores recuerdos</h3>
+
+          <p>
+            Dulce Cereza es una propuesta de pastelería en Arequipa
+            que nace del gusto por compartir y celebrar.
+            Creemos que una torta puede convertir una reunión
+            en un momento especial.
+          </p>
+
+          <p>
+            Nuestra propuesta reúne tortas clásicas, postres
+            y diseños personalizados para cumpleaños,
+            aniversarios y otras ocasiones importantes.
+          </p>
+
+          <p>
+            Cuidamos los sabores, la presentación y los detalles
+            para que cada creación refleje el cariño de quien
+            la comparte.
+          </p>
+
+          <a href="{% url 'historia' %}" class="btn-agregar">
+            Conoce nuestra historia
+          </a>
+        </article>
+
+        <div class="tl-foto" aria-hidden="true">
+          🍰
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valores de la propuesta -->
+  <section class="seccion" aria-labelledby="titulo-detalles">
+    <div class="contenedor">
+      <div class="encabezado">
+        <small>NUESTRA ESENCIA</small>
+        <h2 id="titulo-detalles">Detalles que nos representan</h2>
+      </div>
+
+      <div class="pasos">
+        <article class="paso">
+          <div class="numero" aria-hidden="true">01</div>
+          <h3>Pasión por la repostería</h3>
+          <p>
+            Nos inspira crear sabores que acompañen las reuniones
+            familiares, las sorpresas y los momentos compartidos.
+          </p>
+        </article>
+
+        <article class="paso">
+          <div class="numero" aria-hidden="true">02</div>
+          <h3>Tu estilo en cada detalle</h3>
+          <p>
+            Las ideas, colores y temáticas de tu celebración
+            son el punto de partida para una torta personalizada.
+          </p>
+        </article>
+
+        <article class="paso">
+          <div class="numero" aria-hidden="true">03</div>
+          <h3>Atención cercana</h3>
+          <p>
+            Queremos conocer lo que necesitas y ayudarte
+            a elegir una propuesta para tu ocasión especial.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locales -->
+  <section
+    class="seccion"
+    id="locales"
+    aria-labelledby="titulo-locales"
+  >
+    <div class="contenedor">
+      <div class="encabezado">
+        <small>ENCUÉNTRANOS</small>
+        <h2 id="titulo-locales">Nuestros locales</h2>
+        <p class="inicio-descripcion">
+          Conoce los datos de ubicación y atención de nuestra pastelería.
+        </p>
+      </div>
+
+      <div class="inicio-locales">
+        <article class="tl-card">
+          <div class="num">Arequipa</div>
+          <h3>Muy pronto estaremos en mas lugares</h3>
+
+          <p>
+            <strong>Dirección:</strong><br>
+            Cercado.
+          </p>
+
+          <p>
+            <strong>Horario de atención:</strong><br>
+            08:00 - 20:00
+          </p>
+
+          <p>
+            <strong>Servicios disponibles:</strong><br>
+            Delivery  - recojo en tienda - catering.
+          </p>
+
+          
+          </a>
+        </article>
+
+        <div class="mapa inicio-mapa">
+          <span aria-hidden="true">📍</span>
+          <h3>Ubicación del local</h3>
+          <p>
+            Muy pronto.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include 'componentes/cita.html' with texto="Hacemos tortas, pero lo que de verdad compartimos son momentos especiales." %}
+
+</main>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mi pedido · Dulce Cereza{% endblock %}
+
+{% block content %}
+<section class="hero-pagina">
+  <div class="contenedor">
+    <span class="etiqueta">TU PEDIDO</span>
+    <h1>Revisa tu<br><em>pedido.</em></h1>
+    <p>Ajusta las cantidades, elige cómo recibirlo y confirma. Nosotros nos encargamos del resto.</p>
+  </div>
+</section>
+
+<section class="seccion">
+  <div class="contenedor pedido-layout">
+
+    <div>
+      <div class="lista-pedido" id="lista-pedido"></div>
+
+      <div class="vacio-pedido" id="pedido-vacio">
+        Tu pedido está vacío 🍰<br>
+        <a href="{% url 'catalogo' %}" class="btn-agregar">Ver catálogo</a>
+      </div>
+    </div>
+
+    <aside class="resumen" id="resumen" data-delivery="{{ costo_delivery }}">
+      <h3>Resumen del pedido</h3>
+      <div class="linea-resumen"><span>Subtotal</span><span id="subtotal">S/ 0.00</span></div>
+      <div class="linea-resumen"><span>Envío</span><span id="envio">S/ 0.00</span></div>
+      <div class="linea-resumen total"><span>Total</span><b id="total">S/ 0.00</b></div>
+
+      <form id="form-pedido" method="post">
+        {% csrf_token %}
+        <div class="campo">
+          <label for="nombre">Tu nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej: María Quispe" required>
+        </div>
+        <div class="campo">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="Ej: 999 999 999" required>
+        </div>
+        <div class="campo">
+          <label for="entrega">¿Cómo lo recibes?</label>
+          <select id="entrega" name="entrega">
+            <option value="recojo">Recojo en tienda (gratis)</option>
+            <option value="delivery">Delivery a domicilio (+ S/ {{ costo_delivery|floatformat:2 }})</option>
+          </select>
+        </div>
+        <div class="campo" id="campo-direccion" style="display: none;">
+          <label for="direccion">Dirección de entrega</label>
+          <input type="text" id="direccion" name="direccion" placeholder="Calle, número, distrito">
+        </div>
+        <div class="campo">
+          <label for="fecha">Fecha de entrega</label>
+          <input type="date" id="fecha" name="fecha" required>
+        </div>
+        <div class="campo">
+          <label for="pago">Método de pago</label>
+          <select id="pago" name="pago" required>
+            <option value="">Selecciona...</option>
+            <option>Yape</option>
+            <option>Plin</option>
+            <option>Efectivo</option>
+            <option>Tarjeta</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="notas">Notas (opcional)</label>
+          <textarea id="notas" name="notas" placeholder="Dedicatoria, alergias, hora preferida..."></textarea>
+        </div>
+        <button type="submit" class="btn-enviar" id="btn-confirmar">Confirmar pedido</button>
+        <div class="mensaje-ok" id="mensaje-ok">🎉 ¡Pedido recibido! Te escribiremos para confirmarlo.</div>
+      </form>
+    </aside>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/pedidos.js' %}?v=2"></script>
+{% endblock %}
+
